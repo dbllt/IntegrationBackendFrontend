@@ -1,5 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {APICallerService} from './apicaller.service';
+import {
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
+import {
+  APICallerService
+} from './apicaller.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +18,14 @@ export class AppComponent implements OnInit {
 
   boards: [];
 
+  charging: boolean;
+
   constructor(private apiCallerService: APICallerService) {
+    this.charging = true;
   }
 
   ngOnInit(): void {
+    this.charging = true;
     this.getAllBoards();
   }
 
@@ -23,14 +33,17 @@ export class AppComponent implements OnInit {
     this.apiCallerService.getBoards().subscribe(val => {
       {
         this.boards = val;
+        this.charging = false;
       }
     });
   }
 
 
   putABoard(board: string): void {
+    this.charging = true;
     this.apiCallerService.createBoard(board).subscribe(val => {
       this.getAllBoards();
+      this.placeId = '';
     });
   }
 

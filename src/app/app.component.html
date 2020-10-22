@@ -1,8 +1,24 @@
-<h1>Kanban App</h1>
+<div class="w3-container w3-center">
+  <h1>Kanban App</h1>
 
-<h2>Boards:</h2>
-<ul>
-  <li *ngFor="let board of boards">{{ board.name}}</li>
-</ul>
-<input type="text" value="" [(ngModel)]="placeId"/>
-<button (click)="putABoard(placeId)" formtarget="_blank">Add</button>
+  <h2>Boards:</h2>
+
+  <ul class="w3-ul">
+    <li *ngFor="let board of boards">{{ board.name}}</li>
+  </ul>
+
+  <br>
+  <div *ngIf="charging" class="spinner-border"></div>
+  <br>
+
+  <div class="w3-row w3-margin">
+    <div class="w3-twothird w3-container">
+      <input class="w3-input w3-border" placeholder="Enter a name" (keyup.enter)="putABoard(placeId)" type="text"
+        value="" [(ngModel)]="placeId" />
+    </div>
+    <div class="w3-third w3-container">
+      <button class="w3-button w3-green" (click)="putABoard(placeId)" formtarget="_blank">Add</button>
+    </div>
+  </div>
+
+</div>
